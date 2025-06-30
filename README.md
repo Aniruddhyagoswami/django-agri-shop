@@ -95,8 +95,10 @@ AgriShop/
 
 ## 📌 Authors
 
+- Aniruddhya Goswami
 - Ansh Soni
-- [Your Teammates’ Names]
+- Soukat Dey
+- Utpal Mandal
 
 ## 📜 License
 
