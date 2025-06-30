@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title>Agri Shop</title>
+
+
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/scroll.css" />
+    {% include 'favi.html' %}
+  </head>
+  <body>
+
+
+    {% include 'navbar.html' %} 
+    
+    {% if slider %}
+
+    {% include 'slider.html' %}
+
+    {% endif %}
+
+    <main>
+      <div class="container-fluid border-0 h-auto catebg">
+        <div
+          class="container line text-center fs-3 fw-normal mt-lg-3 mt-2 pt-3 chead"
+        >
+          Categories
+        </div>
+        <div class="container border-0 pt-3">
+          <div class="row row-cols-lg-6 row-cols-3">
+            <div class="col">
+              <a href="/Dynamic/All offers" class="text-decoration-none text-dark">
+                <div
+                  class="card d-flex flex-column justify-content-center border-0 align-items-center py-2 catebg"
+                >
+                  <img
+                    src="/static/img/i1.jpg"
+                    alt=""
+                    class="card-img-top img-fluid cimg rounded-circle ibr"
+                  />
+                  <div class="card-body text-center ctext">Offers</div>
+                </div></a
+              >
+            </div>
+            <div class="col">
+              <a href="/findDynamic/Herbicides" class="text-decoration-none text-dark">
+                <div
+                  class="card d-flex flex-column justify-content-center border-0 align-items-center py-2 catebg"
+                >
+                  <img
+                    src="/static/img/i2.jpg"
+                    alt=""
+                    class="card-img-top img-fluid cimg rounded-circle ibr"
+                  />
+                  <div class="card-body text-center ctext">Herbicides</div>
+                </div></a
+              >
+            </div>
+            <div class="col">
+              <a href="/Dynamic/Growth Promoters" class="text-decoration-none text-dark">
+                <div
+                  class="card d-flex flex-column justify-content-center border-0 align-items-center py-2 catebg"
+                >
+                  <img
+                    src="/static/img/i3.jpg"
+                    alt=""
+                    class="card-img-top img-fluid cimg rounded-circle ibr"
+                  />
+                  <div class="card-body text-center ctext">Growth Promoters</div>
+                </div></a
+              >
+            </div>
+            <div class="col">
+              <a href="/subcategory/Fungicides" class="text-decoration-none text-dark">
+                <div
+                  class="card d-flex flex-column justify-content-center border-0 align-items-center py-2 catebg"
+                >
+                  <img
+                    src="/static/img/i4.jpg"
+                    alt=""
+                    class="card-img-top img-fluid cimg rounded-circle ibr"
+                  />
+                  <div class="card-body text-center ctext">Fungicides</div>
+                </div></a
+              >
+            </div>
+            <div class="col">
+              <a href="/subcategory/Vegetables & Fruit Seeds" class="text-decoration-none text-dark">
+                <div
+                  class="card d-flex flex-column justify-content-center border-0 align-items-center py-2 catebg"
+                >
+                  <img
+                    src="/static/img/i5.jpg"
+                    alt=""
+                    class="card-img-top img-fluid cimg rounded-circle ibr"
+                  />
+                  <div class="card-body text-center ctext">Vegetables & Fruit Seeds</div>
+                </div></a
+              >
+            </div>
+            <div class="col">
+              <a href="/subcategory/Farm Machinery" class="text-decoration-none text-dark">
+
+              <div
+                class="card d-flex flex-column justify-content-center border-0 align-items-center py-2 catebg"
+              >
+                <img
+                  src="/static/img/i6.jpg"
+                  alt=""
+                  class="card-img-top img-fluid cimg rounded-circle ibr"
+                />
+                <div class="card-body text-center ctext">Farm Machinery</div>
+              </div>
+            </div>
+          </a>
+          </div>
+          <div class="row row-cols-lg-6 row-cols-3">
+            
+
+            <div class="col">
+              <a href="/subcategory/Nutrients" class="text-decoration-none text-dark">
+              <div
+                class="card d-flex flex-column justify-content-center border-0 align-items-center py-2 catebg"
+              >
+                <img
+                  src="/static/img/i7.jpg"
+                  alt=""
+                  class="card-img-top img-fluid cimg rounded-circle ibr"
+                />
+                <div class="card-body text-center ctext">Nutrients</div>
+              </div>
+            </a>
+            </div>
+            <div class="col">
+              <a href="/subcategory/Flower Seeds" class="text-decoration-none text-dark">
+
+              <div
+                class="card d-flex flex-column justify-content-center border-0 align-items-center py-2 catebg"
+              >
+                <img
+                  src="/static/img/i8.jpg"
+                  alt=""
+                  class="card-img-top img-fluid cimg rounded-circle ibr"
+                />
+                <div class="card-body text-center ctext">Flower Seeds</div>
+              </div></a>
+            </div>
+            <div class="col">
+              <a href="/subcategory/Insecticides" class="text-decoration-none text-dark">
+
+              <div
+                class="card d-flex flex-column justify-content-center border-0 align-items-center py-2 catebg"
+              >
+                <img
+                  src="/static/img/i9.jpg"
+                  alt=""
+                  class="card-img-top img-fluid cimg rounded-circle ibr"
+                />
+                <div class="card-body text-center ctext">Insecticides</div>
+              </div></a>
+            </div>
+            <div class="col">
+              <a href="/subcategory/Organic Farming" class="text-decoration-none text-dark">
+
+              <div
+                class="card d-flex flex-column justify-content-center border-0 align-items-center py-2 catebg"
+              >
+                <img
+                  src="/static/img/i10.jpg"
+                  alt=""
+                  class="card-img-top img-fluid cimg rounded-circle ibr"
+                />
+                <div class="card-body text-center ctext">Organic Farming</div>
+              </div></a>
+            </div>
+            <div class="col">
+              <a href="/findDynamic/Animal Husbandary" class="text-decoration-none text-dark">
+              
+              <div
+                class="card d-flex flex-column justify-content-center border-0 align-items-center py-2 catebg"
+              >
+                <img
+                  src="/static/img/i11.jpg"
+                  alt=""
+                  class="card-img-top img-fluid cimg rounded-circle ibr"
+                />
+                <div class="card-body text-center ctext">Animal Husbandary</div>
+              </div></a>
+            </div>
+            <div class="col">
+              <a href="/subcategory/PLANT GROWTH REGULATORS" class="text-decoration-none text-dark">
+
+              <div
+                class="card d-flex flex-column justify-content-center border-0 align-items-center py-2 catebg"
+              >
+                <img
+                  src="/static/img/i12.jpg"
+                  alt=""
+                  class="card-img-top img-fluid cimg rounded-circle ibr"
+                />
+                <div class="card-body text-center ctext">Plant Growth Regulators</div>
+              </div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid p-3 secbg">
+      {% if offercard %}
+
+        <div class="row">
+          <div class="col-12 d-flex justify-content-between">
+          <h5>Offers Section</h5>
+          {% if offercard|length > 4 %}
+          <a href="/Dynamic/All offers" class="text-decoration-none">View All</a>
+          {% endif %}
+        </div> </div>
+        <div id="cardSlider" class="d-flex overflow-auto mx-2 mx-lg-4 ps-lg-5  gap-3">
+          <div class="d-flex flex-nowrap " id="cardRow">
+            {% for offercard in offercard %}
+            <div class="flex-shrink-0 me-3 me-lg-3 pe-lg-3">{% include 'Offercard.html' %}</div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="container-fluid coupon d-flex justify-content-lg-center overflow-auto gap-5">
+        <img src="/static/img/coupon1.jpg" />
+        <img src="/static/img/coupon2.jpg" />
+        <img src="/static/img/coupon3.jpg" />
+      </div>
+      {% if recomcard %}
+      <div class="container-fluid p-3 secbg">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-between">
+          <h5>Recommendations Section</h5>
+          {% if recomcard|length > 4 %}
+          <a href="/Dynamic/You can purchase" class="text-decoration-none">View All</a>
+          {% endif %}
+        </div> </div>
+        <div id="cardSlider" class="d-flex overflow-auto mx-2 mx-lg-4 ps-lg-5  gap-3">
+          <div class="d-flex flex-nowrap " id="cardRow">
+            
+            {% for recomcard in recomcard %}
+            <div class="flex-shrink-0 me-3 me-lg-3 pe-lg-3">{% include 'RecomCard.html' %}</div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="container-fluid imgsec d-flex justify-content-lg-center overflow-auto gap-5">
+        <img src="/static/img/img1.jpg" class="mx-lg-5"/>
+        <img src="/static/img/img2.jpg" class="me-lg-5"/>
+        <img src="/static/img/img3.jpg" class="me-lg-5"/>
+      </div>
+      {% if growthcard %}
+
+      <div class="container-fluid p-3 secbg">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-between">
+          <h5>Growth Promoters Section</h5>
+          {% if growthcard|length > 4 %}
+          <a href="/Dynamic/Growth Promoters" class="text-decoration-none">View All</a>
+          {% endif %}
+        </div> </div>
+        <div id="cardSlider" class="d-flex overflow-auto mx-2 mx-lg-4 ps-lg-5  gap-3">
+          <div class="d-flex flex-nowrap " id="cardRow">
+            {% for growthcard in growthcard %}
+
+            <div class="flex-shrink-0 me-3 me-lg-3 pe-lg-3">{% include 'growthcard.html' %}</div>
+            {% endfor %}
+          
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% if Smartfarmingcard %}
+
+      <div class="container-fluid p-3 secbg">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-between">
+          <h5>Smart Farming Section</h5>
+          {% if Smartfarmingcard|length > 4 %}
+          <a href="/Dynamic/Smart farmer's needs" class="text-decoration-none">View All</a>
+          {% endif %}
+        </div> </div>
+        <div id="cardSlider" class="d-flex overflow-auto mx-2 mx-lg-4 ps-lg-5  gap-3">
+          <div class="d-flex flex-nowrap " id="cardRow">
+            {% for Smartfarmingcard in Smartfarmingcard %}
+
+            <div class="flex-shrink-0 me-3 me-lg-3 pe-lg-3">{% include 'smartfarmingcard.html' %}</div>
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% if Spraycard %}
+      <div class="container-fluid p-3 secbg">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-between">
+          <h5>Spray Section</h5>
+          {% if Spraycard|length > 4 %}
+          <a href="/Dynamic/Sprays" class="text-decoration-none">View All</a>
+          {% endif %}
+        </div> </div>
+        <div id="cardSlider" class="d-flex overflow-auto mx-2 mx-lg-4 ps-lg-5  gap-3">
+          <div class="d-flex flex-nowrap " id="cardRow">
+            {% for Spraycard in Spraycard %}
+            <div class="flex-shrink-0 me-3 me-lg-3 pe-lg-3">{% include 'spraycard.html' %}</div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if Seedscard %}
+      <div class="container-fluid p-3 secbg">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-between">
+          <h5>Seeds Section</h5>
+          {% if Seedscard|length > 4 %}
+          <a href="/Dynamic/Seeds" class="text-decoration-none">View All</a>
+          {% endif %}
+        </div> </div>
+        <div id="cardSlider" class="d-flex overflow-auto mx-2 mx-lg-4 ps-lg-5  gap-3">
+          <div class="d-flex flex-nowrap " id="cardRow">
+            {% for Seedscard in Seedscard %}
+            <div class="flex-shrink-0 me-3 me-lg-3 pe-lg-3">{% include 'Seedscard.html' %}</div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% if seasonalcard %}
+      <div class="container-fluid p-3 secbg">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-between">
+          <h5>Seasonal Section</h5>
+          {% if seasonalcard|length > 4 %}
+          <a href="/Dynamic/Seasonal collections" class="text-decoration-none">View All</a>
+          {% endif %}
+        </div> </div>
+        <div id="cardSlider" class="d-flex overflow-auto mx-2 mx-lg-4 ps-lg-5  gap-3">
+          <div class="d-flex flex-nowrap " id="cardRow">
+            {% for seasonalcard in seasonalcard %}
+            <div class="flex-shrink-0 me-3 me-lg-3 pe-lg-3">{% include 'sesonalcard.html' %}</div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      
+
+
+      {% include 'footer.html' %}
+
+      <div class="b-example-divider mb-0"></div>
+    </main>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+      
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const cardSlider = document.getElementById('cardSlider');
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        const isSmallScreen = window.innerWidth <= 768;
+    
+        if (isTouchDevice && isSmallScreen) {
+          cardSlider.style.overflowX = 'auto';
+          cardSlider.style.WebkitOverflowScrolling = 'touch';
+          cardSlider.classList.add('scrolling-touch');
+    
+          let scrollTimeout;
+    
+          cardSlider.addEventListener('scroll', () => {
+            cardSlider.classList.add('scrolling');
+    
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+              cardSlider.classList.remove('scrolling');
+            }, 1000); // Hide scrollbar after 1 second of no scroll
+          });
+        }
+      });
+    </script>
+    
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+    <script src="/static/js/message.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/static/js/searchHandeler.js"></script>
+    
+  </body>
+</html>

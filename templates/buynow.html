@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title>Agri Shop</title>
+    {% include 'favi.html' %}
+
+    <link rel="stylesheet" href="/static/css/fordynamic.css" />
+    <style>
+      body {
+        background-color: #F6FEF9;
+      }
+      h4, h2, .form-section-title {
+        color: #003023;
+      }
+      .form-control {
+        border: 1px solid #83C441;
+        background-color: #ffffff;
+      }
+      .btn-primary {
+        background-color: #83C441;
+        border-color: #83C441;
+        color: #003023;
+      }
+      .btn-primary:hover {
+        background-color: #6eac39;
+        border-color: #6eac39;
+      }
+      input[type="radio"]:checked {
+        accent-color: #83C441;
+      }
+      select.form-select, select {
+        background-color: #ffffff;
+        border: 1px solid #83C441;
+        color: #003023;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+      /* On focus */
+      select.form-select:focus, select:focus {
+        border-color: #83C441;
+        box-shadow: 0 0 0 0.2rem rgba(131, 196, 65, 0.25);
+        outline: none;
+      }
+      /* Option styling (where supported) */
+      option {
+        background-color: #ffffff;
+        color: #003023;
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <div class="container pb-3">
+      <main>
+        <div class="py-5 text-center">
+          <h2>Checkout form</h2>
+        </div>
+
+        <div class="card border-0 py-5 d-flex align-items-center">
+          
+
+          <div class="col-md-7 col-lg-8 ">
+            <h4 class="mb-3">Billing address</h4>
+            <form id="orderForm" class="needs-validation" method="post" novalidate="">
+              {% csrf_token %}
+              <div class="row g-3">
+                <div class="col-12">
+                  <label for="username" class="form-label">Username</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text">@</span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username"
+                      name="username"
+                      placeholder="Username"
+                      value="{{ user.username }}"
+                      required=""
+                    />
+                    <div class="invalid-feedback">
+                      Your username is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    value="{{ user.email }}"
+                    placeholder="you@example.com"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid email address for shipping updates.
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="address" class="form-label">Address</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    name="address"
+                    placeholder="1234 Main St"
+                    required=""
+                  />
+                  <div class="invalid-feedback">
+                    Please enter your shipping address.
+                  </div>
+                </div>
+
+                <!-- Added City input -->
+                <div class="col-12">
+                  <label for="city" class="form-label">City</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="city"
+                    name="city"
+                    placeholder="City"
+                    required=""
+                  />
+                  <div class="invalid-feedback">
+                    Please enter your city.
+                  </div>
+                </div>
+
+                <div class="col-md-5">
+                  <label for="country" class="form-label">Country</label>
+                  <select class="form-select" id="country" name="country" required="">
+                    <option value="">Choose...</option>
+                    <option value="India">India</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <label for="state" class="form-label">State</label>
+                  <select class="form-select" id="state" name="state" required="">
+                    <option value="">Choose...</option>
+                    <!-- States for India -->
+                    <option class="India" value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option class="India" value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option class="India" value="Assam">Assam</option>
+                    <option class="India" value="Bihar">Bihar</option>
+                    <option class="India" value="Chhattisgarh">Chhattisgarh</option>
+                    <option class="India" value="Goa">Goa</option>
+                    <option class="India" value="Gujarat">Gujarat</option>
+                    <option class="India" value="Haryana">Haryana</option>
+                    <option class="India" value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option class="India" value="Jharkhand">Jharkhand</option>
+                    <option class="India" value="Karnataka">Karnataka</option>
+                    <option class="India" value="Kerala">Kerala</option>
+                    <option class="India" value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option class="India" value="Maharashtra">Maharashtra</option>
+                    <option class="India" value="Manipur">Manipur</option>
+                    <option class="India" value="Meghalaya">Meghalaya</option>
+                    <option class="India" value="Mizoram">Mizoram</option>
+                    <option class="India" value="Nagaland">Nagaland</option>
+                    <option class="India" value="Odisha">Odisha</option>
+                    <option class="India" value="Punjab">Punjab</option>
+                    <option class="India" value="Rajasthan">Rajasthan</option>
+                    <option class="India" value="Sikkim">Sikkim</option>
+                    <option class="India" value="Tamil Nadu">Tamil Nadu</option>
+                    <option class="India" value="Telangana">Telangana</option>
+                    <option class="India" value="Tripura">Tripura</option>
+                    <option class="India" value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option class="India" value="Uttarakhand">Uttarakhand</option>
+                    <option class="India" value="West Bengal">West Bengal</option>
+
+                    
+                  </select>
+                  <div class="invalid-feedback">
+                    Please provide a valid state.
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <label for="zip" class="form-label">Zip</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="zip"
+                    name="zip"
+                    placeholder=""
+                    required=""
+                  />
+                  <div class="invalid-feedback">Zip code required.</div>
+                </div>
+              </div>
+
+              <hr class="my-4" />
+
+              <h4 class="mb-3">Payment</h4>
+
+              <div class="my-3">
+                <div class="form-check">
+                  <input
+                    id="cod"
+                    name="paymentMethod"
+                    type="radio"
+                    class="form-check-input"
+                    checked=""
+                    required=""
+                  />
+                  <label class="form-check-label" for="cod">Cash on Delivery (COD)</label>
+                </div>
+              </div>
+
+              <p class="text-muted">Please note that you will need to pay the delivery boy in cash upon receiving the product.</p>
+
+              <hr class="my-4" />
+
+              <button class="w-100 btn btn-primary btn-lg" id="downloadReceiptButton" type="submit">
+                Confirm your order
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+    {% include 'footer.html' %}
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/static/js/searchHandeler.js"></script>
+  </body>
+</html>

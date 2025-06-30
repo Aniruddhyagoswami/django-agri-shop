@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/fordynamic.css" />
+    <title>Agri Shop | About Us</title>
+    {% include 'favi.html' %}
+
+    <style>
+      .featurette-heading {
+        font-weight: 600;
+        font-size: 2rem;
+        color: #003023;
+      }
+      .featurette-heading .atext {
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: #83C441;
+      }
+      .lead {
+        font-size: 1.1rem;
+        color: #4D4D4D;
+        line-height: 1.7;
+      }
+      hr.featurette-divider {
+        margin: 3rem 0;
+        border-top: 2px solid #83C441;
+      }
+      .featurette-image {
+        border-radius: 15px;
+        box-shadow: 0 4px 16px rgba(0, 48, 35, 0.08);
+        background-color: #F6FEF9;
+      }
+      .about-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        border-bottom: 3px solid #83C441;
+        display: inline-block;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+        color: #003023;
+      }
+      .mbg {
+        background-color: #F6FEF9;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include 'navbar.html' %}
+
+    {% comment %} <main class="mbg"> {% endcomment %}
+      <div class="container-fluid px-lg-5 mt-4">
+        <h1 class="text-center about-title">About Us</h1>
+      </div>
+
+      <div class="container marketing my-5">
+        <!-- Featurette 1 -->
+        <div class="row featurette align-items-center py-5">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Empowering Farmers <span class="atext">with Digital Innovation</span></h2>
+            <p class="lead">
+              At Agri Shop, our mission is to bridge the gap between rural farmers and modern markets. 
+              We provide a digital platform where farmers can sell their produce directly to consumers, 
+              ensuring fair prices and transparency. By reducing the role of middlemen, we empower farmers to thrive in a growing digital economy.
+            </p>
+          </div>
+          <div class="col-md-5 text-center">
+            <img src="/static/img/896.jpg" class="featurette-image img-fluid" width="500" height="500" alt="Empowering Farmers" />
+          </div>
+        </div>
+
+        <hr class="featurette-divider" />
+
+        <!-- Featurette 2 -->
+        <div class="row featurette align-items-center py-5">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Fresh Produce <span class="atext">Straight from the Fields</span></h2>
+            <p class="lead">
+              We connect consumers directly to the source. Whether it's grains, vegetables, fruits, or organic products,
+              our platform ensures that you receive the freshest and most affordable agricultural goods.
+              Supporting local farmers also promotes a healthy, sustainable lifestyle for all.
+            </p>
+          </div>
+          <div class="col-md-5 order-md-1 text-center">
+            <img src="/static/img/896.jpg" class="featurette-image img-fluid" width="500" height="500" alt="Fresh Produce" />
+          </div>
+        </div>
+
+        <hr class="featurette-divider" />
+
+        <!-- Featurette 3 -->
+        <div class="row featurette align-items-center py-5">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Agricultural Tools & Resources <span class="atext">All in One Place</span></h2>
+            <p class="lead">
+              From seeds and fertilizers to tractors and irrigation equipment, Agri Shop provides everything a farmer needs.
+              We partner with trusted brands to ensure quality and reliability. 
+              With doorstep delivery and expert guidance, we make modern farming easier and more accessible.
+            </p>
+          </div>
+          <div class="col-md-5 text-center">
+            <img src="/static/img/896.jpg" class="featurette-image img-fluid" width="500" height="500" alt="Farming Tools" />
+          </div>
+        </div>
+      </div>
+
+      {% include 'footer.html' %}
+    {% comment %} </main> {% endcomment %}
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

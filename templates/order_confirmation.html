@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order Confirmation - Agri Shop</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    .hi{
+      height: 50vh;
+    }
+  </style>
+</head>
+<body>
+  {% include 'navbar.html' %}
+  <div class="container my-4 hi text-center d-flex flex-column">
+    <h3 class="p-4">Order Confirmed!</h3>
+    <p>Thank you for your order. Your order has been successfully placed.</p>
+    
+    <div class="text-center mt-4">
+      <a href="{% url 'download_receipt_pdf' %}" class="btn btn-success">Download recipt</a>
+      <a href="/home/" class="btn btn-primary">Go to Home</a>
+    </div>
+  </div>
+  {% include 'footer.html' %}
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/static/js/searchHandeler.js"></script>
+</body>
+</html>

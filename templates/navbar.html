@@ -1,0 +1,150 @@
+{% include 'alert.html' %}
+<header class="w-100">
+  <nav
+    class="navbar navbar-expand-lg navbar-light overflow-sm-none nav"
+  >
+    <div class="container-fluid p-lg-0 px-2 px-lg-0">
+      <div class="d-flex align-items-center">
+        <button
+          class="navbar-toggler h-50"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand ps-2" href="/home/"
+          ><img src="/static/img/L2.png" height="25" alt=""
+        /></a>
+      </div>
+      <div class="d-flex">
+        
+        {% if request.user.is_authenticated %}
+        <div class="dropdown text-end d-lg-none ">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/static/img/default+user.jpg" alt="mdo" width="38" height="38" class="rounded-circle">
+            
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="dropdownUser1">
+            <li><h6 class="dropdown-item text-center">{{request.user}}</h6></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/edit-profile/">Edit Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout/">Sign out</a></li>
+        </div>
+        
+      {% else %}
+      <a
+        class="d-lg-none btn butns"
+        href="/signin/"
+        >Login</a
+      >
+      {% endif %}
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav align-lg-items-center me-auto mb-2 mb-lg-0">
+          <form class="d-flex" id="search-form" role="search" method="GET" action="/search/" >
+            {% csrf_token %}
+            <li class="nav-item mt-lg-2 ">
+              <div class="d-flex ms-lg-5 ps-lg-5" role="search">
+                <input
+                  class="form-control me-1 mt-3 mt-lg-0 widthofsearch"
+                  type="text" id="myInput" name="myInput"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button
+                  class="btn butns mt-3 mt-lg-0"
+                  type="submit"
+                >
+                  Search
+                </button>
+                <ul id="searchDropdown" class="dropdown-menu position-absolute w-75  w-lg-50 mt-5 z-3  max-height-300">
+                  <!-- Dynamically populated list items will go here -->
+                </ul>
+                
+              </div>
+            </li>
+          </form>
+          <li class="nav-item pt-lg-2 ">
+            <a class="nav-link ms-lg-5 ps-lg-5" style="color: #F6FEF9;" href="/sell/">Farmer</a>
+          </li>
+          <li class="nav-item">
+            {% if request.user.is_authenticated %}
+            
+          {% else %}
+          <a
+            class="nav-link ms-lg-5 mt-lg-1 ps-lg-5 d-none d-lg-flex pt-1"
+            href="/signin/"
+            ><button class="btn butns p-1">Login</button></a
+          >
+          {% endif %}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-3 ms-lg-5 ps-lg-5" style="color: #F6FEF9;" href="/cart/"
+              ><i class="bi bi-cart"></i
+            ></a>
+          </li>
+        {% if request.user.is_authenticated %}
+        {% comment %} <li class="nav-item ps-5 ms-5 pt-2  d-none d-lg-flex ">
+          <div class="dropdown text-end ">
+            <a href="/edit-profile/" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              
+              <img src="/static/img/default+user.jpg" alt="mdo" width="38" height="38" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="dropdownUser1">
+              <li><h6 class="dropdown-item text-center">{{request.user}}</h6></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/edit-profile/">Edit Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout/">Sign out</a></li>
+            </ul>
+          </div>
+        
+
+        </li> {% endcomment %}
+        <li class="nav-item ps-5 ms-5 pt-2 d-none d-lg-flex">
+  <div class="dropdown text-end user-dropdown"> <!-- ⬅ Add class 'user-dropdown' -->
+    <a href="/edit-profile/" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="/static/img/default+user.jpg" alt="mdo" width="38" height="38" class="rounded-circle border border-success border-2"> <!-- ⬅ Optional green border -->
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="dropdownUser1">
+      <li><h6 class="dropdown-item text-center">{{ request.user }}</h6></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="/edit-profile/">Edit Profile</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="/logout/">Sign out</a></li>
+    </ul>
+  </div>
+</li>
+        {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <nav class="navbar navbar-expand-lg p-0 p-lg-2  navb">
+    <div class="container-fluid">
+      <div
+        class="collapse navbar-collapse border-lg-top border-1"
+        id="navbarSupportedContent"
+      >
+       
+        <ul
+          class="navbar-nav me-auto mb-2 mb-lg-0 container-fluid d-flex justify-content-center gap-lg-5"
+        >
+          {% for catagory in catagories %}
+          <a
+            class="text-decoration-none  mt-3 mb-3"
+            href="/findDynamic/{{catagory.Catagory_name|safe}}"
+            >{{catagory.Catagory_name}}</a
+          >
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,54 @@
+
+<a href="/productview/{{ card.id }}" class="nav-link text-dark">
+  <div class="card h-100 position-relative text-center px-2 py-3 cbg">
+
+    <!-- 🔶 Discount Badge -->
+    <div class="position-absolute top-0 start-0 px-2 py-1  small fw-bold disc" style="font-size: 0.75rem;">
+      {{ card.discount }}% OFF
+    </div>
+
+    <!-- 🖼 Image -->
+    <div class="d-flex justify-content-center align-items-center mb-2" style="height: 140px;">
+      <img src="/media/{{ card.image }}" alt="{{ card.cardtitle }}" class="img-fluid" style="max-height: 100%; object-fit: contain;" />
+    </div>
+
+    <!-- 🔖 Limited Time Deal Badge -->
+    <div class="mb-2">
+      <span class="badge lbadge rounded-pill px-2 py-1 small">
+        Limited Time Deal
+      </span>
+    </div>
+
+    <!-- 📦 Title -->
+    <div class="px-2">
+      <h6 class="fw-semibold mb-1 text-truncate ttext">{{ card.cardtitle }}</h6>
+      
+    </div>
+
+    <!-- 💰 Price Info -->
+    <div class="px-2 mb-2">
+      <div class="d-flex justify-content-center align-items-center flex-column small">
+        <span class="fw-bold ptext">₹{{ card.price }}</span>
+        {% if card.mrp %}
+          <span class="text-muted">
+            <s>₹{{ card.mrp }}</s> &nbsp;
+            {% with saved=card.mrp|add:"-"|add:card.price %}
+              Save ₹{{ saved }}
+            {% endwith %}
+          </span>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- 🛒 Buy Button -->
+    <div class="px-2">
+      <form action="/cart/add/{{ card.id }}" method="post" class="m-0">
+        {% csrf_token %}
+        <button type="submit" class="btn butns btn-sm w-100 rounded-pill">
+          Buy
+        </button>
+      </form>
+    </div>
+
+  </div>
+</a>

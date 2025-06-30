@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agri Shop</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/fordynamic.css" />
+    <style>
+      .product-image {
+        max-width: 100%;
+        height: auto;
+      }
+      .thumbnail-scroll {
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .thumbnail-scroll img {
+        display: inline-block;
+        width: 60px;
+        margin-right: 0.5rem;
+      }
+      .price-original {
+        text-decoration: line-through;
+        color: #878787;
+        font-size: 14px;
+      }
+      .discount-tag {
+        background-color: #ff9800;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 12px;
+      }
+      .btn-orange {
+        background-color: #fb641b;
+        color: white;
+      }
+      .btn-orange:hover {
+        background-color: #d75d16;
+      }
+      .highlight-box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 8px;
+      }
+        .review-card {
+          border-bottom: 1px solid #eee;
+          padding-bottom: 1rem;
+          margin-bottom: 1rem;
+        }
+        .rating-bar {
+          height: 8px;
+          background-color: #f0f0f0;
+          border-radius: 4px;
+          overflow: hidden;
+        }
+        .rating-bar-fill {
+          height: 100%;
+          background-color: #ffa500;
+        }
+        .profile-icon {
+          width: 40px;
+          height: 40px;
+          background-color: #d1e7dd;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+        }
+      
+    </style>
+  </head>
+  <body class="bg-light">
+    {% include 'navbar.html' %}
+    <div class="container py-4">
+      <div class="row g-4">
+        <!-- Image and Thumbnails -->
+        <div class="col-12 col-md-6">
+          <img
+            src="/static/img/896.jpg"
+            alt="Product Image"
+            class="img-fluid product-image mb-3"
+          />
+          <div class="thumbnail-scroll">
+            <img src="/static/img/896.jpg" alt="" />
+            <img src="/static/img/896.jpg" alt="" />
+            <img src="/static/img/896.jpg" alt="" />
+            <img src="/static/img/896.jpg" alt="" />
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-12 col-md-6">
+          <h5>No Virus Bio Viricide</h5>
+          <p class="text-muted">Geolife Agritech India Pvt Ltd.</p>
+          <span class="badge bg-danger">Limited Time Deal</span>
+          <div class="my-2">
+            <span class="text-warning">★★★★★</span>
+            <small>(79 reviews)</small>
+          </div>
+
+          <p class="mb-1">
+            <span class="fw-bold fs-5">₹279</span>
+            <span class="price-original ms-2">₹700</span>
+            <span class="discount-tag ms-2">60% OFF</span>
+          </p>
+          <p class="text-success">Save ₹421</p>
+          <p class="text-muted">Inclusive of all taxes</p>
+          <div class="alert alert-primary py-1 px-2">
+            💸 Get it for ₹270 with deals
+          </div>
+
+          <p class="mb-1 fw-bold">Size</p>
+          <p>250 ml</p>
+
+          <p class="mb-1 fw-bold">Variants</p>
+          <div class="d-flex flex-overflow gap-2 mb-3">
+            <div class="highlight-box">
+              <span class="discount-tag mb-1 d-inline-block">60% OFF</span>
+              <div>250 ml</div>
+              <div>₹279 <span class="price-original ms-1">₹700</span></div>
+            </div>
+            <div class="highlight-box">
+              <span class="discount-tag mb-1 d-inline-block">60% OFF</span>
+              <div>250 ml</div>
+              <div>₹279 <span class="price-original ms-1">₹700</span></div>
+            </div>
+            <div class="highlight-box">
+              <span class="discount-tag mb-1 d-inline-block">60% OFF</span>
+              <div>250 ml</div>
+              <div>₹279 <span class="price-original ms-1">₹700</span></div>
+            </div>
+          </div>
+
+          <ul class="list-unstyled">
+            <li>✅ Country of Origin India</li>
+            <li>✅ Secure Payments</li>
+            <li>✅ In stock, Ready to Ship</li>
+          </ul>
+
+          <div class="d-grid gap-2 d-md-flex">
+            <a href="/cart/" class="btn btn-warning">Add to Cart</a>
+            <a href="/cart/" class="btn btn-success">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container my-4">
+      <h4 class="fw-bold">Product Description</h4>
+
+      <h6 class="fw-bold mt-4">About Product</h6>
+      <ul>
+        <li>
+          <strong>Geolife No Virus</strong> is an organic viricide made with a
+          unique combination of herbs.
+        </li>
+        <li>
+          It is a broad-spectrum viricide, which stops virus development in
+          plant systems.
+        </li>
+        <li>
+          It acts rapidly to inhibit viral infections and fosters new foliage.
+        </li>
+        <li>
+          It is key for saving crop loss due to Virus with 100% Natural and
+          Organic product.
+        </li>
+      </ul>
+
+      <h6 class="fw-bold mt-4">Geolife No Virus Technical Details</h6>
+      <p class="fw-bold">Technical Content:</p>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Ingredients</th>
+              <th>Enterprise Specification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>Lantana camera</em> extract</td>
+              <td>2.00%</td>
+            </tr>
+            <tr>
+              <td><em>Boerhavia diffusa</em> extract</td>
+              <td>2.00%</td>
+            </tr>
+            <tr>
+              <td><em>Bougainvillea spectabilis</em> extract</td>
+              <td>4.00%</td>
+            </tr>
+            <tr>
+              <td><em>Acorus calamus</em> extract</td>
+              <td>2.00%</td>
+            </tr>
+            <tr>
+              <td>Aqueous solution</td>
+              <td>90.00%</td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td>100%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h6 class="fw-bold mt-4">Mode Of Entry:</h6>
+      <p>This product has both contact and systemic action against viruses.</p>
+
+      <h6 class="fw-bold">Mode Of Action:</h6>
+      <p>
+        The introduction of No Virus occurs through the stomatal opening and
+        spreads through the vascular bundles. It stops viruses by blocking
+        attachment or fusion and interferes with the virus’s outer layer or
+        replication process. It also prevents viruses from sticking to cells.
+      </p>
+
+      <h6 class="fw-bold mt-4">Key Features And Benefits</h6>
+      <ul>
+        <li>Broad Spectrum Botanical Anti-Viral Product.</li>
+        <li>Encapsulates virions and stops spread.</li>
+        <li>Initiates new foliage and improves crop yield.</li>
+        <li>Residue-free and safe for farming.</li>
+        <li>Effective against various mosaic and leaf curl viruses.</li>
+      </ul>
+
+      <h6 class="fw-bold mt-4">Geolife No Virus Usage And Crops</h6>
+      <p>
+        <strong>Recommended Crops:</strong> All crops (Vegetables, Fruits,
+        Spices, Cereals & Pulses)
+      </p>
+      <p>
+        <strong>Dosage:</strong> 3-5 ml / 1 L of water & 600 – 1000 ml/ Acre
+      </p>
+
+      <h6 class="fw-bold mt-4">Target Diseases</h6>
+      <ul>
+        <li>Chili Mosaic Virus</li>
+        <li>Squash Mosaic Virus</li>
+        <li>Cucumber Mosaic Virus</li>
+        <li>Tomato Leaf Curl Virus</li>
+        <li>Tomato Mosaic Virus</li>
+        <li>Tomato Brown Rugose Fruit Virus</li>
+        <li>Zucchini Yellow Mosaic Virus</li>
+        <li>Papaya Mosaic Virus</li>
+        <li>Okra Mosaic Virus</li>
+      </ul>
+
+      <h6 class="fw-bold mt-4">Method Of Application</h6>
+      <p><strong>Foliar Spray</strong></p>
+      <p>
+        <strong>Preventive Spray:</strong> 3 ml/lit + insecticide. Repeat every
+        10-15 days. Min 3 sprays.
+      </p>
+      <p>
+        <strong>Curative Spray:</strong> 5 ml/lit + insecticide + crop nutrient.
+        Repeat every 10-15 days. 2-3 sprays required.
+      </p>
+
+      <h6 class="fw-bold mt-4">Additional Information</h6>
+      <ul>
+        <li>Effective in the initial stage of infection.</li>
+        <li>Free from toxic chemicals.</li>
+        <li>Compatible with all agrochemicals.</li>
+      </ul>
+
+      <h6 class="fw-bold mt-4">Disclaimer</h6>
+      <p>
+        This information is for reference only. Follow guidelines on the product
+        label.
+      </p>
+    </div>
+    <div class="container py-4">
+      <div class="row">
+        <!-- Left Section -->
+        <div class="col-lg-4 mb-4">
+          <h5>Customer Reviews</h5>
+          <div class="d-flex align-items-center mb-2">
+            <div class="me-2">
+              <strong>4.7</strong>
+            </div>
+            <div class="text-warning">
+              ★★★★★
+            </div>
+            <div class="ms-2">79 ratings</div>
+          </div>
+  
+          <!-- Rating breakdown -->
+          <div class="mb-3">
+            <div class="d-flex align-items-center">
+              <small class="me-2">5 star</small>
+              <div class="flex-grow-1 rating-bar">
+                <div class="rating-bar-fill" style="width: 92%;"></div>
+              </div>
+              <small class="ms-2">92%</small>
+            </div>
+            <div class="d-flex align-items-center">
+              <small class="me-2">4 star</small>
+              <div class="flex-grow-1 rating-bar">
+                <div class="rating-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <small class="me-2">3 star</small>
+              <div class="flex-grow-1 rating-bar">
+                <div class="rating-bar-fill" style="width: 1%;"></div>
+              </div>
+              <small class="ms-2">1%</small>
+            </div>
+            <div class="d-flex align-items-center">
+              <small class="me-2">2 star</small>
+              <div class="flex-grow-1 rating-bar">
+                <div class="rating-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <small class="me-2">1 star</small>
+              <div class="flex-grow-1 rating-bar">
+                <div class="rating-bar-fill" style="width: 6%;"></div>
+              </div>
+              <small class="ms-2">6%</small>
+            </div>
+          </div>
+  
+          <button class="btn btn-success w-100">Write a Product Review</button>
+        </div>
+  
+        <!-- Right Section -->
+        <div class="col-lg-8">
+          <div class="review-card">
+            <div class="d-flex align-items-center mb-2">
+              <div class="profile-icon me-3">V</div>
+              <div>
+                <strong>Verified Farmer</strong><br>
+                ★☆☆☆☆ <small class="text-muted">Reviewed on 07 February 2025</small>
+              </div>
+            </div>
+            <p>Not working</p>
+          </div>
+  
+          <div class="review-card">
+            <div class="d-flex align-items-center mb-2">
+              <div class="profile-icon me-3">A</div>
+              <div>
+                <strong>AgriShop Farmer</strong><br>
+                ★★★★★ <small class="text-muted">Reviewed on 20 January 2025</small>
+              </div>
+            </div>
+            <p>I recently purchased Geolife No Virus, and I'm extremely impressed by its effectiveness and ease of use.</p>
+          </div>
+  
+          <!-- Additional sample reviews can go here following the same structure -->
+  
+          <div class="text-center mt-4">
+            <a href="#" class="text-success">Read more reviews →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include 'footer.html' %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

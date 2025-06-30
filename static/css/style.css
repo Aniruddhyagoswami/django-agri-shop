@@ -1,0 +1,286 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 900;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.fbg {
+  background-color: #003023;
+  color: #f6fef9;
+}
+
+.flink {
+  color: #f6fef9;
+}
+
+.flink:hover {
+  font-weight: bold;
+  color: #83c441;
+}
+
+.catebg {
+  background-color: #f6fef9;
+}
+.chead {
+  color: #003023;
+}
+.line {
+  border-bottom: 3px solid #83c441;
+}
+
+.ibr {
+  border: 2px solid #83c441;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ctext {
+  color: #003023; /* Harvest */
+  font-weight: 500;
+}
+h5 {
+  color: #003023;
+}
+.secbg {
+  color: #f6fef9;
+  border: 1px solid #a3d06b;
+}
+
+.cbg {
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cbg:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.disc {
+  border-top-left-radius: 14px;
+  border-bottom-right-radius: 15px;
+  background-color: #ffc300;
+  color: #003023;
+}
+.ttext {
+  color: #003023; /* Heading */
+  font-weight: bold;
+}
+.ptext {
+  color: #83c441; /* Price */
+}
+
+.lbadge {
+  background-color: #83c441;
+  color: #f6fef9;
+  font-weight: 600;
+}
+
+.coupon {
+  background-color: #83c441;
+  padding: 10px 0;
+}
+.coupon img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 10px;
+}
+.brandname {
+  background-color: #83c441;
+  padding: 10px 0;
+}
+.brandname img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 10px;
+}
+.imgsec {
+  background-color: #83c441;
+  padding: 10px 0;
+}
+.imgsec img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 10px;
+}
+.nav {
+  background-color: #003023;
+}
+.navb {
+  background-color: #83c441; /* Fresh Sprout */
+  color: #003023; /* Harvest */
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+.navb a {
+  background-color: #83c441; /* Fresh Sprout */
+  color: #003023; /* Harvest */
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.butns {
+  background-color: #83c441;
+  color: #f6fef9;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.butns:hover {
+  background-color: #003023;
+  color: #f6fef9;
+  border: 1px solid #83c441;
+}
+
+.search-result-item a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+}
+
+.result-product {
+  display: flex;
+  align-items: center;
+}
+
+.result-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.result-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.product-price {
+  font-size: 12px;
+  color: #28a745;
+}
+
+.result-category p {
+  font-size: 16px;
+  color: #007bff;
+}
+/* For Footer Changes */
+
+/* Universal card CSS */
+.cardimage {
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.card-title-text {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.card-text {
+  color: #555;
+}
+
+.borderroud {
+  border-radius: 10px;
+}
+
+.widthofsearch {
+  width: 50vw;
+  /* Default width */
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+  .widthofsearch {
+    width: 80vw;
+    /* Adjust width for tablets and smaller screens */
+  }
+}
+
+/* Media Query for very small screens (like mobile devices) */
+@media (max-width: 480px) {
+  .widthofsearch {
+    width: 75vw;
+    /* Even larger width for smaller screens */
+  }
+}
+
+.buttonimpresion {
+  height: 30px;
+  width: 30px;
+}
+.max-height-300 {
+  max-height: 300px; /* Adjust this value to fit your design */
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.product-name {
+  white-space: normal; /* Ensures text can wrap across lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px; /* Adjust width as needed */
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Agri Shop Receipt</title>
+  <style>
+    body {
+      font-family: DejaVu Sans, sans-serif;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .receipt-box {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px;
+      border: 1px solid #ccc;
+      background: #fff;
+      border-radius: 6px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #4CAF50;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .summary p {
+      margin: 4px 0;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #e8f5e9;
+      color: #333;
+    }
+
+    .text-end {
+      text-align: right;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mt-4 {
+      margin-top: 20px;
+    }
+
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="receipt-box">
+    <h2>🌾 AgriShop Receipt</h2>
+    <p><strong>Customer:</strong> {{ username }}</p>
+    <p><strong>Date:</strong> {{ order_date|date:"d M Y, h:i A" }}</p>
+    <hr>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in orders %}
+        <tr>
+          <td>{{ item.product_name }}</td>
+          <td>₹{{ item.Price|floatformat:2 }}</td>
+          <td>{{ item.quantity }}</td>
+          
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <table>
+      <thead><tr>
+        <th>Total</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>{{total}}</td></tr>
+      </tbody>
+    </table>
+    <div class="footer mt-4">
+      🌱 Thank you for shopping with AgriShop! 🌿
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/static/js/searchHandeler.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agri Shop</title>
+    
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    {% include 'favi.html' %}
+    <link rel="stylesheet" href="/static/css/fordynamic.css" />
+    <style>
+      .card {
+        border: none;
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+      .price-original {
+        text-decoration: line-through;
+        color: #878787;
+        font-size: 14px;
+      }
+      .price-discount {
+        color: green;
+        font-weight: 500;
+      }
+      .btn-orange {
+        background-color: #83C441;
+        color: #F6FEF9;
+        border: none;
+        padding: 10px 20px;
+        font-weight: 600;
+        border-radius: 6px;
+      }
+      .btn-orange:hover {
+        background-color: #003023;
+        color: #F6FEF9;
+      }
+      .remove-link {
+      color: #003023;
+      font-weight: 500;
+      }
+      .remove-link:hover {
+        color: #83C441;
+      }
+      .delivery-free {
+        color: green;
+        font-weight: 500;
+      }
+      .policy-text {
+        font-size: 14px;
+        color: #878787;
+      }
+      .total-save {
+        color: green;
+      }
+      @media (max-width: 576px) {
+        .card h6, .card p {
+          font-size: 14px;
+        }
+        .btn {
+          font-size: 14px;
+          padding: 6px 12px;
+        }
+      }
+      .cartbg {
+        background-color: #F6FEF9;
+      }
+    </style>
+  </head>
+  <body class="cartbg">
+    {% include 'navbar.html' %}
+    <div class="container my-4">
+      <div class="row g-4">
+        <!-- Left Section (Product List) -->
+        <div class="col-lg-8">
+          <div class="card p-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="mb-0">Orders</h6>
+                           </div>
+            <hr />
+            <!-- Orders -->
+            {% for order_info in orders_with_items %}
+            <div class="d-flex flex-column">
+              <div class="fw-bold mb-3">
+                Order #{{ order_info.order.id }} (Placed on {{ order_info.order.created_at }})
+              </div>
+              {% for item in order_info.items %}
+              <div class="d-flex">
+                <img src="{{ item.product.image.url }}" width="120" class="me-3 img-fluid" />
+                <div class="flex-grow-1">
+                  <h6 class="mb-1">{{ item.product.cardtitle }}</h6>
+                  <p class="mb-1 text-muted">{{ item.product.Description|truncatechars:20|safe }}</p>
+                  <p class="mb-1">
+                    <span class="price-original me-2">₹{{ item.product.price }}</span>
+                    <span class="fw-bold">₹{{ item.price }}</span>
+                    <span class="text-success ms-2">{{ item.product.discount }}% Off</span>
+                  </p>
+                  <p class="text-success mb-2">{{ item.product.availablity }} available</p>
+                  <p class="mb-0">
+                    Delivery for 
+                    <!-- <span class="price-original">₹{{ item.product.price }}</span> -->
+                    <span class="delivery-free">Free</span>
+                  </p>
+                </div>
+              </div>
+              <!-- Quantity & Actions -->
+              <div class="d-flex justify-content-between align-items-center my-3 flex-wrap">
+                <div class="btn-group btn-group-sm" role="group">
+                  
+<form action="{% url 'updateorders' 'Sub' 1 %}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="product_id" value="{{ item.product.id }}">
+  <button type="submit" class="btn btn-outline-secondary ">−</button>
+</form>
+                    <input type="text" class="form-control form-control-sm text-center" style="width: 60px;" value="{{ item.quantity }}" min="1" id="changevalue" readonly />
+                    <form action="{% url 'updateorders' 'Add' 1 %}" method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                      <button type="submit" class="btn btn-outline-secondary">+</button>
+                    </form>
+                </div>
+                <div class="mt-3 mt-lg-0 d-flex  align-items-center justify-content-center gap-5 gap-lg-5 ">
+                  <form action="{% url 'updateorders' action='Remove' value=0 %}" method="POST" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                    
+                    <button type="submit"  class="btn btn-link remove-link text-decoration-none me-3 p-0 m-0"  value="{{ order_item.product.id }}">REMOVE</button>
+                </form>
+                
+                  
+                  <a href="/buynow/{{ item.product.id}}"><button class="btn btn-orange px-5 ms-3 ms-lg-0">PLACE ORDER</button></a>
+
+                </div>
+              </div>
+              {% endfor %}
+              <div class="text-end mt-4">
+              </div>
+            </div>
+            <hr />
+            {% endfor %}
+          </div>
+        </div>
+<!-- Right Section (Price Details) -->
+<div class="col-lg-4">
+  <div class="card p-3">
+    <h6 class="mb-3">PRICE DETAILS</h6>
+    <hr />
+    <div class="d-flex justify-content-between mb-2">
+      <span>Price ({{ product_count }} items)</span>
+      <span>₹{{ grand_total|floatformat:2 }}</span>
+    </div>
+
+    
+
+    <!-- Delivery Charges (Assuming Free) -->
+    <div class="d-flex justify-content-between mb-2">
+      <span>Delivery Charges</span>
+      <span class="text-success">Free</span>
+    </div>
+
+    <hr />
+    
+    <!-- Total Amount (After Discount) -->
+    <div class="d-flex justify-content-between mb-2 fw-bold">
+      <span>Total Amount</span>
+      <span>₹{{ grand_total|floatformat:2}}</span> <!-- Apply discount here if needed -->
+    </div>
+
+    <hr />
+    
+    <!-- Saving Section -->
+    <p class="total-save mb-0">
+      You will save ₹{{ discount_amount|floatformat:2 }} on this order
+    </p> 
+
+    <div class="text-end mt-4">
+      <a href="/buynow/"><button class="btn btn-orange px-5">PLACE ALL ORDER</button></a>
+    </div>
+  </div>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    {% include 'footer.html' %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/ClickinCart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/static/js/searchHandeler.js"></script>
+  </body>
+</html>

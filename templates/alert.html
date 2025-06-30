@@ -1,0 +1,37 @@
+{% if messages %}
+<!-- Modal -->
+<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="messageModalLabel">Alert!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="headerCloseBtn"></button>
+      </div>
+
+      <div class="modal-body">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+
+    
+
+    </div>
+  </div>
+</div>
+
+<!-- Auto-show modal and handle custom close -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const modalEl = document.getElementById('messageModal');
+    const messageModal = new bootstrap.Modal(modalEl);
+    messageModal.show();
+
+    // Optional: Custom close button logic
+    document.getElementById('customCloseBtn').addEventListener('click', () => {
+      messageModal.hide();
+    });
+  });
+</script>
+{% endif %}

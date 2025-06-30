@@ -1,0 +1,394 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agri Shop - Product Dashboard</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Summernote CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.9.1/dist/summernote.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/fordynamic.css' %}" />
+  <style>
+    /* ====== GENERAL STYLING ====== */
+body {
+  background-color: #F6FEF9;
+  color: #003023;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ====== HEADINGS ====== */
+h2, h5 {
+  color: #003023;
+}
+
+/* ====== BUTTONS ====== */
+.btn-success {
+  background-color: #83C441;
+  border-color: #83C441;
+}
+
+.btn-success:hover {
+  background-color: #6aaa39;
+  border-color: #6aaa39;
+}
+
+.btn-warning {
+  background-color: #f3e36e;
+  border-color: #f3e36e;
+  color: #003023;
+}
+
+.btn-warning:hover {
+  background-color: #e6d45a;
+  border-color: #e6d45a;
+  color: #003023;
+}
+
+.btn-danger {
+  background-color: #ff6a00;
+  border-color: #ff6a00;
+}
+
+.btn-danger:hover {
+  background-color: #e35d00;
+}
+
+/* ====== TABLE ====== */
+.table {
+  background-color: white;
+  border-color: #83C441;
+}
+
+.table-bordered th, .table-bordered td {
+  border: 1px solid #83C441;
+}
+
+.table-dark {
+  background-color: #003023;
+  color: #ffffff;
+}
+
+/* ====== CARDS ====== */
+.card {
+  background-color: white;
+  border-left: 4px solid #83C441;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* ====== FORM INPUTS ====== */
+.form-control, .form-select {
+  border: 1px solid #83C441;
+  border-radius: 4px;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #83C441;
+  box-shadow: 0 0 0 0.2rem rgba(131, 196, 65, 0.25);
+}
+
+/* ====== MODAL STYLING ====== */
+.modal-content {
+  background-color: #F6FEF9;
+  border: 2px solid #83C441;
+  border-radius: 10px;
+}
+
+.modal-header, .modal-footer {
+  background-color: #d2f2c6;
+  border-bottom: 1px solid #83C441;
+}
+
+.modal-title {
+  color: #003023;
+}
+
+/* ====== ACCORDION ====== */
+.accordion-button {
+  background-color: #83C441;
+  color: #ffffff;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #6aaa39;
+}
+
+.accordion-body {
+  background-color: #ffffff;
+}
+
+/* ====== MISC ====== */
+.img-fluid {
+  border: 1px solid #83C441;
+  border-radius: 6px;
+}
+
+  </style>
+</head>
+
+<body>
+  {% include 'navbar.html' %}
+
+  <div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Product Dashboard</h2>
+      <a href="/farmerdash/#enterpro" class="btn btn-success">+ Add New Product</a>
+    </div>
+
+    <!-- Product Table -->
+    <div class="table-responsive mb-5">
+      <table class="table table-bordered align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Units</th>
+            <th colspan="3">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+          <tr>
+            <td>{{ product.product_name }}</td>
+            <td>₹{{ product.price }}</td>
+            <td>{{ product.max_product }}</td>
+            <td>{{ product.unit_of_measurement }}</td>
+            {% comment %} <td>
+             
+              <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ product.id }}">Edit</button>
+              <form action="{% url 'delete_product' product.id %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+              </form>
+            </td> {% endcomment %}
+            <td>
+  <div class="d-flex gap-2">
+    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ product.id }}">Edit</button>
+    <form action="{% url 'delete_product' product.id %}" method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+    </form>
+  </div>
+</td>
+
+          </tr>
+
+         
+<div class="modal fade" id="editModal{{ product.id }}" tabindex="-1" aria-labelledby="editModalLabel{{ product.id }}" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form method="POST" action="{% url 'update_product' product.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Product - {{ product.product_name }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" name="product_name" class="form-control mb-2" value="{{ product.product_name }}" required>
+          <input type="number" name="price" class="form-control mb-2" value="{{ product.price }}" required>
+          <input type="number" name="max_product" class="form-control mb-2" value="{{ product.max_product }}" required>
+          <input type="text" name="unit_of_measurement" class="form-control mb-2" value="{{ product.unit_of_measurement }}" required>
+          <textarea name="Description" class="form-control summernote">{{ product.Description }}</textarea>
+          
+          <!-- Display current images -->
+          <div class="mb-3">
+            <h5>Current Images:</h5>
+            <div class="row">
+              <div class="col-md-3">
+                {% if product.image %}
+                  <img src="{{ product.image.url }}" alt="Product Image" class="img-fluid mb-2">
+                {% else %}
+                  <p>No image uploaded</p>
+                {% endif %}
+              </div>
+              <div class="col-md-3">
+                {% if product.image1 %}
+                  <img src="{{ product.image1.url }}" alt="Product Image 1" class="img-fluid mb-2">
+                {% else %}
+                  <p>No image uploaded</p>
+                {% endif %}
+              </div>
+              <div class="col-md-3">
+                {% if product.image2 %}
+                  <img src="{{ product.image2.url }}" alt="Product Image 2" class="img-fluid mb-2">
+                {% else %}
+                  <p>No image uploaded</p>
+                {% endif %}
+              </div>
+              <div class="col-md-3">
+                {% if product.image3 %}
+                  <img src="{{ product.image3.url }}" alt="Product Image 3" class="img-fluid mb-2">
+                {% else %}
+                  <p>No image uploaded</p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Image upload inputs to allow the user to change images -->
+          <div class="mb-3">
+            <h5>Update Product Images (Optional)</h5>
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <input type="file" name="image" class="form-control" accept="image/*">
+              </div>
+              <div class="col-md-3 mb-3">
+                <input type="file" name="image1" class="form-control" accept="image/*">
+              </div>
+              <div class="col-md-3 mb-3">
+                <input type="file" name="image2" class="form-control" accept="image/*">
+              </div>
+              <div class="col-md-3 mb-3">
+                <input type="file" name="image3" class="form-control" accept="image/*">
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Update Product</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+          {% empty %}
+          <tr>
+            <td colspan="5" class="text-center">No products found.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Create New Product Form -->
+    <h2 class="mb-4">Create New Product</h2>
+    <form method="POST" action="/farmerdash/" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <!-- Upload Images -->
+      <div class="card p-4 mb-4" id="enterpro">
+        <h5>Upload Product Images (Max 4)</h5>
+        <div class="row">
+          <div class="col-md-3 mb-3"><input type="file" name="image" class="form-control" accept="image/*" required></div>
+          <div class="col-md-3 mb-3"><input type="file" name="image1" class="form-control" accept="image/*"></div>
+          <div class="col-md-3 mb-3"><input type="file" name="image2" class="form-control" accept="image/*"></div>
+          <div class="col-md-3 mb-3"><input type="file" name="image3" class="form-control" accept="image/*"></div>
+        </div>
+      </div>
+
+      <!-- Product Basic Info -->
+      <div class="card p-4 mb-4">
+        <h5>Product Basic Info</h5>
+        <input type="text" name="product_name" class="form-control mb-3" placeholder="Product Name" required>
+        <input type="number" step="0.01" name="price" class="form-control mb-3" placeholder="Price (₹)" required>
+        <input type="number" name="max_product" class="form-control mb-3" placeholder="Available Quantity" required>
+
+        <select name="unit_of_measurement" class="form-select mb-3" required>
+          <option selected disabled>Select Unit of Measurement</option>
+          <option value="kg">Kilogram (kg)</option>
+          <option value="g">Gram (g)</option>
+          <option value="qt">Quintal (qt)</option>
+          <option value="ton">Metric Ton (ton)</option>
+          <option value="lbs">Pounds (lbs)</option>
+          <option value="oz">Ounce (oz)</option>
+          <option value="l">Liter (L)</option>
+          <option value="ml">Milliliter (ml)</option>
+          <option value="gal">Gallon (gal)</option>
+          <option value="pt">Pint (pt)</option>
+          <option value="fl_oz">Fluid Ounce (fl oz)</option>
+          <option value="m2">Square Meter (m²)</option>
+          <option value="ha">Hectare (ha)</option>
+          <option value="ac">Acre (ac)</option>
+          <option value="km2">Square Kilometer (km²)</option>
+          <option value="none">None</option>
+        </select>
+      </div>
+
+      <!-- Description Sections -->
+      <div class="accordion mb-4" id="descriptionAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingShortDesc">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#aboutProduct">
+              Short Description
+            </button>
+          </h2>
+          <div id="aboutProduct" class="accordion-collapse collapse show" data-bs-parent="#descriptionAccordion">
+            <div class="accordion-body">
+              <textarea name="Description" class="form-control summernote" rows="4" placeholder="Short description..." required></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingLongDesc">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#technicalDetails">
+              Detailed Description
+            </button>
+          </h2>
+          <div id="technicalDetails" class="accordion-collapse collapse" data-bs-parent="#descriptionAccordion">
+            <div class="accordion-body">
+              <textarea name="Description_of_product" class="form-control summernote" rows="5" placeholder="Detailed product info..." required></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category and Subcategory -->
+      <div class="card p-4 mb-4">
+        <h5>Product Category</h5>
+        <select name="category" class="form-select mb-3" required>
+          <option selected disabled>Select Category</option>
+          {% for cat in catagories %}
+            <option value="{{ cat.id }}">{{ cat.Catagory_name }}</option>
+          {% endfor %}
+        </select>
+
+        <select name="subcategory" class="form-select mb-3" required>
+          <option selected disabled>Select Subcategory</option>
+          {% for subcat in subcategories %}
+            <option value="{{ subcat.id }}">{{ subcat.subCatagory_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Extra Details -->
+      <div class="card p-4 mb-4">
+        <h5>Extra Details</h5>
+        <input type="text" name="discount" class="form-control mb-3" placeholder="Discount (e.g., 10%)">
+        <input type="text" name="availablity" class="form-control mb-3" placeholder="Availability (e.g., In Stock)" required>
+        <input type="text" name="reviews" class="form-control mb-3" placeholder="Ratings 1-5 (optional)">
+      </div>
+
+      <button type="submit" class="btn btn-success">Create Product</button>
+    </form>
+  </div>
+
+  {% include 'footer.html' %}
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.1/dist/summernote.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('.summernote').summernote({
+        height: 200,
+        placeholder: 'Write here...'
+      });
+    });
+  </script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/static/js/searchHandeler.js"></script>
+</body>
+</html>
