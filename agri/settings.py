@@ -1,13 +1,20 @@
 import os
 from pathlib import Path
-import dj_database_url  # Required for PostgreSQL URL
+import dj_database_url
+from dotenv import load_dotenv
+
+# Load local .env if present (only in development)
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security and environment variables
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'unsafe-secret-key')
-ALLOWED_HOSTS = ['.onrender.com', 'localhost']
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+if not SECRET_KEY:
+    raise Exception("DJANGO_SECRET_KEY is not set in environment variables.")
+
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '.onrender.com,localhost,127.0.0.1').split(',')
 
 # Installed apps
 INSTALLED_APPS = [
@@ -84,7 +91,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Media files
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -94,8 +101,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'teamagrimail3@gmail.com')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'opsb mxye kuid snoe')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = f"Agri Shop <{EMAIL_HOST_USER}>"
 
 # Login redirect
