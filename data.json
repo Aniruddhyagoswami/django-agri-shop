@@ -6526,14 +6526,7 @@
     "user_permissions": []
   }
 },
-{
-  "model": "contenttypes.contenttype",
-  "pk": 1,
-  "fields": {
-    "app_label": "django_summernote",
-    "model": "attachment"
-  }
-},
+
 {
   "model": "contenttypes.contenttype",
   "pk": 2,
