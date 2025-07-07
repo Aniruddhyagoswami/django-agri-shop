@@ -26,7 +26,7 @@ AgriShop is an innovative web-based platform that empowers farmers to sell their
 
 | Frontend | Backend | Database | Tools |
 |----------|---------|----------|-------|
-| HTML, CSS, JavaScript, Bootstrap 5 | Django (Python) | MySQL | Git, VS Code, Chrome DevTools |
+| HTML, CSS, JavaScript, Bootstrap 5 | Django (Python) | MySQL | Git, VS Code |
 
 ## 🎨 Color Palette
 
