@@ -579,7 +579,7 @@
   "model": "portal.carddetails",
   "pk": 3,
   "fields": {
-    "image": "product/p1.webp",
+    "image": "product/p1.webp", 
     "image1": "",
     "image2": "",
     "image3": "",
