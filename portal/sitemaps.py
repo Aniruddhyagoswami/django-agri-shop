@@ -1,16 +1,15 @@
 from django.contrib.sitemaps import Sitemap
-from django.shortcuts import reverse
-from .models import Product  # Import your Product model
+from django.urls import reverse
+from .models import CardDetails
 
 class ProductSitemap(Sitemap):
     changefreq = "weekly"
-    priority = 0.8
+    priority = 0.9
 
     def items(self):
-        # This returns all products. You can filter if needed (e.g., active products only)
-        return Product.objects.all()
+        # Returns all products that are NOT marked as unavailable
+        return CardDetails.objects.exclude(availablity='no')
 
     def location(self, obj):
-        # This assumes your Product model has a get_absolute_url method
-        # If not, return explicit url like: return f'/product/{obj.id}/'
-        return f'/product/{obj.id}/'
+        # FIXED: Now matches name='productview' from your urls.py
+        return reverse('productview', args=[obj.id])
