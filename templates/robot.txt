@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /check/
+Disallow: /buynow/
+
+Sitemap: https://django-agri-shop.onrender.com/sitemap.xml
