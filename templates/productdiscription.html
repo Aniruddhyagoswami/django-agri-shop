@@ -3,31 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ product.cardtitle }}</title>  <!-- Product Title -->
+    
+    <title>{{ product.cardtitle }} - Buy Online at Best Price | Agri Shop</title>
+    <meta name="description" content="Buy {{ product.cardtitle }} online. {{ product.Description|striptags|truncatewords:25 }} Get best deals on agriculture products at Agri Shop." />
+    
+    <meta property="og:title" content="{{ product.cardtitle }} - ₹{{ product.price }}" />
+    <meta property="og:description" content="{{ product.Description|striptags|truncatewords:30 }}" />
+    <meta property="og:image" content="https://django-agri-shop.onrender.com/media/{{ product.image }}" />
+    <meta property="og:type" content="product" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "{{ product.cardtitle }}",
+      "image": [
+        "https://django-agri-shop.onrender.com/media/{{ product.image }}"
+        {% if product.image1 %}, "https://django-agri-shop.onrender.com/media/{{ product.image1 }}"{% endif %}
+        {% if product.image2 %}, "https://django-agri-shop.onrender.com/media/{{ product.image2 }}"{% endif %}
+      ],
+      "description": "{{ product.Description|striptags|truncatewords:50 }}",
+      "brand": {
+        "@type": "Brand",
+        "name": "Agri Shop"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "{{ request.build_absolute_uri }}",
+        "priceCurrency": "INR",
+        "price": "{{ product.price }}",
+        "priceValidUntil": "2026-12-31",
+        "availability": "{% if product.availablity == 'yes' %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+        "itemCondition": "https://schema.org/NewCondition"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ product.rating }}",
+        "reviewCount": "{{ product.reviews.count|default:1 }}"
+      }
+    }
+    </script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/static/css/fordynamic.css" />
     {% include 'favi.html' %}
+    
     <style>
       body {
-        background-color: #F6FEF9; /* Morning Dew */
-        color: #003023; /* Harvest for default text */
+        background-color: #F6FEF9;
+        color: #003023;
         font-family: 'Arial', sans-serif;
       }
-
       .description-section {
         background-color: #F6FEF9;
         padding: 40px 20px;
         border-radius: 10px;
         margin-top: 40px;
       }
-
       .description-section h3 {
         font-size: 1.8rem;
         color: #003023;
         font-weight: bold;
         margin-bottom: 30px;
       }
-
       .description-content {
         text-align: left;
         font-size: 1.1rem;
@@ -35,39 +74,32 @@
         color: #003023;
         margin-top: 20px;
       }
-
       .card-body {
         padding: 25px;
         background-color: #ffffff;
         border-radius: 8px;
-        border: 1px solid #83C441; /* Fresh Sprout border */
+        border: 1px solid #83C441;
       }
-
       .badge.bg-danger {
-        background-color: #83C441 !important; /* Fresh Sprout */
-        color: #003023 !important; /* Harvest text */
+        background-color: #83C441 !important;
+        color: #003023 !important;
       }
-
       .price-original {
         text-decoration: line-through;
         color: #003023;
       }
-
       .discount-tag {
         color: #83C441;
         font-weight: 500;
       }
-
       .text-success {
         color: #83C441 !important;
       }
-
       .alert-primary {
         background-color: #83C441;
         color: #003023;
         border: none;
       }
-
       .btn-warning {
         background-color: #83C441;
         color: #003023;
@@ -75,26 +107,20 @@
         font-weight: bold;
         text-transform: uppercase;
       }
-
       .btn-warning:hover {
         background-color: #76b13b;
       }
-
       ul.list-unstyled li {
         margin-bottom: 5px;
         color: #003023;
       }
-
       .text-muted {
         color: #003023 !important;
         opacity: 0.7;
       }
-
-
-      /* Responsive design */
       @media (max-width: 767px) {
         .description-content {
-          font-size: 1rem; /* Smaller text on mobile */
+          font-size: 1rem;
           line-height: 1.6;
         }
       }
@@ -105,50 +131,37 @@
     
     <div class="container py-4">
       <div class="row g-4">
-        <!-- Image and Thumbnails -->
         <div class="col-12 col-md-6">
-          <!-- Main Product Image -->
-  <img id="main-product-image" src="/media/{{ product.image }}" alt="{{ product.cardtitle }}" class="img-fluid product-image mb-3 border rounded" style="height: 350px; width: 100%; object-fit: contain; background-color: #f8f9fa;"/>
+          <img id="main-product-image" src="/media/{{ product.image }}" alt="{{ product.cardtitle }} - Agri Shop" class="img-fluid product-image mb-3 border rounded" style="height: 350px; width: 100%; object-fit: contain; background-color: #f8f9fa;"/>
 
-  <!-- Thumbnails -->
-  <div class="d-flex gap-2 flex-wrap">
-    {% if product.image %}
-    <img src="/media/{{ product.image }}" alt="Thumbnail 0" class="img-thumbnail thumbnail-image" style="width: 80px; height: 80px; object-fit: cover;" onclick="changeMainImage(this)" />
-    {% endif %}
-
-    {% if product.image1 %}
-    <img src="/media/{{ product.image1 }}" alt="Thumbnail 1" class="img-thumbnail thumbnail-image" style="width: 80px; height: 80px; object-fit: cover;" onclick="changeMainImage(this)" />
-    {% endif %}
-
-    {% if product.image2 %}
-    <img src="/media/{{ product.image2 }}" alt="Thumbnail 2" class="img-thumbnail thumbnail-image" style="width: 80px; height: 80px; object-fit: cover;" onclick="changeMainImage(this)" />
-    {% endif %}
-
-    {% if product.image3 %}
-    <img src="/media/{{ product.image3 }}" alt="Thumbnail 3" class="img-thumbnail thumbnail-image" style="width: 80px; height: 80px; object-fit: cover;" onclick="changeMainImage(this)" />
-    {% endif %}
-  </div>
-          <!-- Add thumbnails if necessary -->
+          <div class="d-flex gap-2 flex-wrap">
+            {% if product.image %}
+            <img src="/media/{{ product.image }}" alt="{{ product.cardtitle }} view 1" class="img-thumbnail thumbnail-image" style="width: 80px; height: 80px; object-fit: cover;" onclick="changeMainImage(this)" />
+            {% endif %}
+            {% if product.image1 %}
+            <img src="/media/{{ product.image1 }}" alt="{{ product.cardtitle }} view 2" class="img-thumbnail thumbnail-image" style="width: 80px; height: 80px; object-fit: cover;" onclick="changeMainImage(this)" />
+            {% endif %}
+            {% if product.image2 %}
+            <img src="/media/{{ product.image2 }}" alt="{{ product.cardtitle }} view 3" class="img-thumbnail thumbnail-image" style="width: 80px; height: 80px; object-fit: cover;" onclick="changeMainImage(this)" />
+            {% endif %}
+            {% if product.image3 %}
+            <img src="/media/{{ product.image3 }}" alt="{{ product.cardtitle }} view 4" class="img-thumbnail thumbnail-image" style="width: 80px; height: 80px; object-fit: cover;" onclick="changeMainImage(this)" />
+            {% endif %}
+          </div>
         </div>
 
-        <!-- Product Info -->
         <div class="col-12 col-md-6">
-          <h5>{{ product.cardtitle }}</h5>  <!-- Dynamic Product Title -->
-          <p class="text-muted">{{ product.category.Catagory_name }}</p>  <!-- Category -->
+          <h1 class="h5 fw-bold">{{ product.cardtitle }}</h1>
+          
+          <p class="text-muted">{{ product.category.Catagory_name }}</p>
           <span class="badge bg-danger">Limited Time Deal</span>
           <div class="my-2">
             <span class="text-warning">
-              {% with rating=product.rating %}
-      {% for i in "12345" %}
-        {% if rating >= forloop.counter %}
-          ★
-        {% elif rating >= forloop.counter0|add:"0.5" %}
-          ½
-        {% else %}
-          ☆
-        {% endif %}
-      {% endfor %}
-    {% endwith %}
+             {% with rating=product.rating %}
+               {% for i in "12345" %}
+                 {% if rating >= forloop.counter %}★{% elif rating >= forloop.counter0|add:"0.5" %}½{% else %}☆{% endif %}
+               {% endfor %}
+             {% endwith %}
             </span>
             <small>({{ product.reviews.count }} reviews)</small>
           </div>
@@ -164,14 +177,7 @@
             💸 Get it for ₹{{ product.discounted_price }} with deals
           </div>
 
-          {% comment %} <p class="mb-1 fw-bold">Size</p>
-          <p>{{ product.size }}</p> {% endcomment %}
-
-          <!-- <p class="mb-1 fw-bold">Variants</p>
-          <!-- Loop over variants if you have them -->
-          <div class="d-flex flex-overflow gap-2 mb-3">
-            <!-- Add product variants here -->
-          </div> 
+          <div class="d-flex flex-overflow gap-2 mb-3"></div> 
 
           <ul class="list-unstyled">
             <li>✅ Country of Origin: India</li>
@@ -180,32 +186,25 @@
           </ul>
 
           <div class="d-grid gap-2 d-md-flex">
-            <!-- <a href="/cart/" class="btn btn-warning">Add to Cart</a> -->
             <form action="/cart/add/{{ product.id }}" method="post" class="m-0">
               {% csrf_token %}
-              <button type="submit" class="btn btn-warning">
-               Add to Cart
-              </button>
+              <button type="submit" class="btn btn-warning">Add to Cart</button>
             </form>
-            <!-- <a href="/cart/" class="btn btn-success">Buy Now</a> -->
             <form action="/cart/add/{{ product.id }}" method="post" class="m-0">
               {% csrf_token %}
-              <button type="submit" class="btn btn-warning">
-                Buy Now
-              </button>
+              <button type="submit" class="btn btn-warning">Buy Now</button>
             </form>
           </div>
         </div>
       </div>
     </div>
+
     <div class="description-section">
       <div class="container">
-        <h3>Product Description</h3>
+        <h2>Product Description</h2>
         <div class="card">
           <div class="card-body">
             <div class="description-content">
-              
-              
               {% if product.Description_of_product %}
                 <p>{{ product.Description_of_product|safe }}</p>
               {% endif %}
@@ -214,7 +213,6 @@
         </div>
       </div>
     </div>
-    
     
     {% include 'footer.html' %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
