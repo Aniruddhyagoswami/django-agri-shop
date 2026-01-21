@@ -2,6 +2,16 @@
 
 AgriShop is an innovative web-based platform that empowers farmers to sell their agricultural products directly to consumers. It bridges the gap between rural producers and urban buyers, enabling a transparent, fair, and accessible online marketplace.
 
+## 🌐 Live Demo
+
+Check out the live version of the app here: **[https://django-agri-shop.onrender.com](https://django-agri-shop.onrender.com)**
+
+> The site is also indexed in search engines like Google.
+
+## 📖 Documentation
+
+For more detailed information about the project features, models, and architecture, please visit the **[Wiki](WIKI.md)**.
+
 ## 🚀 Features
 
 - 🧑‍🌾 **Farmer Dashboard**
@@ -95,10 +105,10 @@ AgriShop/
 
 ## 📌 Authors
 
-- Aniruddhya Goswami
+- Utpal Mandal
 - Ansh Soni
 - Soukat Dey
-- Utpal Mandal
+- Aniruddhya Goswami (Me)
 
 ## 📜 License
 
